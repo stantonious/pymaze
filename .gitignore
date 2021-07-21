@@ -5,5 +5,8 @@
 .idea
 *.pyc
 __pycache__
+MANIFEST
+build/
+dist/
 
 
