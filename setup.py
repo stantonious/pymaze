@@ -10,10 +10,9 @@ setup(name='pymaze',
       author_email='',
       scripts=[],
       package_data={},
-      packages=['src'],
-      package_dir={'src': 'src'},
+      packages=['pymaze'],
+      package_dir={'pymaze': 'pymaze'},
       install_requires=[
-          'matplotlib',
       ],
       )
 

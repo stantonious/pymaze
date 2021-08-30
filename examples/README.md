@@ -3,13 +3,26 @@
 To encode a maze
 
 ```
-from src.maze_manager import MazeManager
-from src.maze import Maze
-from src import encoder
+from pymaze.maze_manager import MazeManager
+from pymaze.maze import Maze
+from pymaze import encoder
 manager = MazeManager()
-maze = manager.add_maze(10, 10)
+maze = manager.add_maze(14, 14)
 
-encoder.encode
-[[11, 3, 20, 9, 5, 11, 1, 1, 3, 5], [9, 5, 12, 12, 10, 5, 14, 10, 5, 12], [12, 12, 10, 6, 9, 6, 9, 3, 6, 12], [12, 10, 5, 13, 10, 3, 6, 9, 5, 12], [12, 9, 6, 8, 3, 3, 7, 12, 10, 6], [20, 8, 3, 6, 9, 3, 3, 6, 9, 5], [12, 14, 9, 3, 6, 9, 3, 3, 4, 12], [12, 9, 6, 9, 7, 12, 9, 7, 12, 12], [12, 10, 5, 10, 3, 2, 6, 9, 6, 12], [10, 3, 2, 3, 3, 3, 3, 6, 11, 6]]
+m=encoder.encode(maze.grid)
+
+
+for _i in range(0,14,2):
+  if m[_i][_i] & encoder.NORTH_BIT:
+    encoder.add_status(m,_i,_i,encoder.NORTH_BIT, (_i%2)+2)
+  elif m[_i][_i] & encoder.SOUTH_BIT:
+    encoder.add_status(m,_i,_i,encoder.SOUTH_BIT, (_i%2)+2)
+  elif m[_i][_i] & encoder.EAST_BIT:
+    encoder.add_status(m,_i,_i,encoder.EAST_BIT, (_i%2)+2)
+  elif m[_i][_i] & encoder.WEST_BIT:
+    encoder.add_status(m,_i,_i,encoder.WEST_BIT, (_i%2)+2)
+
+
+str(m).replace('[','{').replace(']','}')
 
 ```

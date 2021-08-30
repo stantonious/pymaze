@@ -1,8 +1,7 @@
-from src.maze import Maze
-from src.maze_viz import Visualizer
-from src.solver import DepthFirstBacktracker
-from src.solver import BiDirectional
-from src.solver import BreadthFirst
+from pymaze.maze import Maze
+from pymaze.solver import DepthFirstBacktracker
+from pymaze.solver import BiDirectional
+from pymaze.solver import BreadthFirst
 
 
 class MazeManager(object):
@@ -36,7 +35,7 @@ class MazeManager(object):
             Maze: The newly created maze
         """
 
-        if id is not 0:
+        if id != 0:
             self.mazes.append(Maze(row, col, id))
         else:
             if len(self.mazes) < 1:
@@ -126,30 +125,6 @@ class MazeManager(object):
         elif method == "BreadthFirst":
             solver = BreadthFirst(maze, neighbor_method, self.quiet_mode)
             maze.solution_path = solver.solve()
-
-    def show_maze(self, id, cell_size=1):
-        """Just show the generation animation and maze"""
-        vis = Visualizer(self.get_maze(id), cell_size, self.media_name)
-        vis.show_maze()
-
-    def show_generation_animation(self, id, cell_size=1):
-        vis = Visualizer(self.get_maze(id), cell_size, self.media_name)
-        vis.show_generation_animation()
-
-    def show_solution(self, id, cell_size=1):
-        vis = Visualizer(self.get_maze(id), cell_size, self.media_name)
-        vis.show_maze_solution()
-
-    def show_solution_animation(self, id, cell_size =1):
-        """
-        Shows the animation of the path that the solver took.
-
-        Args:
-            id (int): The id of the maze whose solution will be shown
-            cell_size (int):
-        """
-        vis = Visualizer(self.get_maze(id), cell_size, self.media_name)
-        vis.animate_maze_solution()
 
     def check_matching_id(self, id):
         """Check if the id already belongs to an existing maze
